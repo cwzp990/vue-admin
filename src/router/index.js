@@ -1,0 +1,40 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+import Layout from '@/pages/layout/index'
+
+const routerMap = [
+  {
+    path: '/login',
+    component: () => import ('@/pages/login/index')
+  },
+  {
+    path: '/404',
+    component: () => import('@/pages/errorPage/404')
+  },
+  {
+    path: '/401',
+    component: () => import('@/pages/errorPage/401')
+  },
+  {
+    path: '',
+    component: Layout,
+    redirect: 'dashboard',
+    children: [
+      {
+        path: '/dashboard',
+        component: '@/pages/dashboard/index',
+        name: 'dashboard',
+        meta: {
+          title: 'dashboard'
+        }
+      }
+    ]
+  }
+]
+
+new Router({
+  routes: routerMap
+})
