@@ -1,6 +1,6 @@
-<!-- 页面标签 -->
+<!-- 侧边栏 -->
 <template>
-  <div class="tags-view-container">
+  <div class="sidebar-container">
   </div>
 </template>
 
@@ -22,10 +22,4 @@ export default {
 
 </script>
 <style lang='scss' scoped>
-@import '../../../styles/mixin.scss';
-.tags-view-container {
-  @include wh(100%, 34px);
-  background: #fff;
-  border-bottom: 1px solid $juzi;
-}
 </style>
