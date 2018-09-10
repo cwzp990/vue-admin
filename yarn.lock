@@ -2,39 +2,6 @@
 # yarn lockfile v1
 
 
-"@antv/adjust@~0.0.3":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@antv/adjust/-/adjust-0.0.6.tgz#16db3000dd315607acda8f6968caf7b58c36f3a8"
-  dependencies:
-    "@antv/util" "~1.0.11"
-
-"@antv/attr@~0.0.3":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@antv/attr/-/attr-0.0.6.tgz#5b3886512cd290c1bd179e9613f3197243dc0557"
-  dependencies:
-    "@antv/util" "~1.0.11"
-
-"@antv/f2@^3.1.4-beta.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@antv/f2/-/f2-3.2.2.tgz#43b5bef6b9eeef352ae3c5461451936ec59eef3c"
-  dependencies:
-    "@antv/adjust" "~0.0.3"
-    "@antv/attr" "~0.0.3"
-    "@antv/scale" "~0.0.6"
-    "@antv/util" "~1.0.6"
-    hammerjs "^2.0.8"
-
-"@antv/scale@~0.0.6":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@antv/scale/-/scale-0.0.8.tgz#abadec0e432c657089c7b17ea019cddc267b4f84"
-  dependencies:
-    "@antv/util" "~1.0.11"
-    fecha "~2.3.3"
-
-"@antv/util@~1.0.11", "@antv/util@~1.0.6":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@antv/util/-/util-1.0.12.tgz#b55e921f30f1c8410f3e24a2d889e82568c3df38"
-
 "@babel/code-frame@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "http://registry.npmjs.org/@babel/code-frame/-/code-frame-7.0.0-beta.44.tgz#2a02643368de80916162be70865c97774f3adbd9"
@@ -1100,10 +1067,6 @@ arr-union@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
 
-array-filter@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/array-filter/-/array-filter-1.0.0.tgz#baf79e62e6ef4c2a4c0b831232daffec251f9d83"
-
 array-filter@~0.0.0:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/array-filter/-/array-filter-0.0.1.tgz#7da8cf2e26628ed732803581fd21f67cacd2eeec"
@@ -1111,10 +1074,6 @@ array-filter@~0.0.0:
 array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
-
-array-find@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/array-find/-/array-find-1.0.0.tgz#6c8e286d11ed768327f8e62ecee87353ca3e78b8"
 
 array-flatten@1.1.1:
   version "1.1.1"
@@ -1124,17 +1083,13 @@ array-flatten@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
 
-array-map@^0.0.0, array-map@~0.0.0:
+array-map@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/array-map/-/array-map-0.0.0.tgz#88a2bab73d1cf7bcd5c1b118a003f66f665fa662"
 
 array-reduce@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/array-reduce/-/array-reduce-0.0.0.tgz#173899d3ffd1c7d9383e4479525dbe278cab5f2b"
-
-array-shuffle@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/array-shuffle/-/array-shuffle-1.0.1.tgz#7ea4882a356b4bca5f545e0b6e52eaf6d971557a"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -1233,10 +1188,6 @@ autoprefixer@^8.6.5:
     postcss "^6.0.23"
     postcss-value-parser "^3.2.3"
 
-autosize@^3.0.20:
-  version "3.0.21"
-  resolved "https://registry.yarnpkg.com/autosize/-/autosize-3.0.21.tgz#f182f40d17757d978a139a4c9ca40c4c0e448603"
-
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -1245,11 +1196,12 @@ aws4@^1.6.0, aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
 
-axios@^0.15.3:
-  version "0.15.3"
-  resolved "http://registry.npmjs.org/axios/-/axios-0.15.3.tgz#2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053"
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "http://registry.npmjs.org/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
   dependencies:
-    follow-redirects "1.0.0"
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -1370,10 +1322,6 @@ block-stream@*:
 bluebird@^3.1.1, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
-
-blueimp-md5@^2.6.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.10.0.tgz#02f0843921f90dca14f5b8920a38593201d6964d"
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
@@ -1978,10 +1926,6 @@ cosmiconfig@^5.0.0:
     is-directory "^0.3.1"
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
-
-countup.js@^1.8.1:
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-1.9.3.tgz#ce3e50cd7160441e478f07da31895edcc0f1c9dd"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -2905,10 +2849,6 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-fastclick@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/fastclick/-/fastclick-1.0.6.tgz#161625b27b1a5806405936bda9a2c1926d06be6a"
-
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -2924,10 +2864,6 @@ faye-websocket@~0.11.0:
   resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.11.1.tgz#f0efe18c4f56e4f40afc7e06c719fd5ee6188f38"
   dependencies:
     websocket-driver ">=0.5.1"
-
-fecha@~2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/fecha/-/fecha-2.3.3.tgz#948e74157df1a32fd1b12c3a3c3cdcb6ec9d96cd"
 
 figgy-pudding@^3.5.1:
   version "3.5.1"
@@ -3047,13 +2983,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
-follow-redirects@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.0.0.tgz#8e34298cbd2e176f254effec75a1c78cc849fd37"
-  dependencies:
-    debug "^2.2.0"
-
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.3.0:
   version "1.5.7"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.7.tgz#a39e4804dacb90202bca76a9e2ac10433ca6a69a"
   dependencies:
@@ -3313,10 +3243,6 @@ gzip-size@^4.1.0:
   dependencies:
     duplexer "^0.1.1"
     pify "^3.0.0"
-
-hammerjs@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
 handle-thing@^1.2.5:
   version "1.2.5"
@@ -4229,10 +4155,6 @@ lodash.mergewith@^4.6.0:
 lodash.tail@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
-
-lodash.throttle@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
 lodash.transform@^4.6.0:
   version "4.6.0"
@@ -5566,10 +5488,6 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qr.js@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
-
 qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
@@ -6146,10 +6064,6 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
-
-shake.js@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/shake.js/-/shake.js-1.2.2.tgz#b2ac560a82abe68d78a029623a7088e1b30bacff"
 
 shallow-clone@^1.0.0:
   version "1.0.0"
@@ -6912,14 +6826,6 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validator@^9.3.0:
-  version "9.4.1"
-  resolved "http://registry.npmjs.org/validator/-/validator-9.4.1.tgz#abf466d398b561cd243050112c6ff1de6cc12663"
-
-vanilla-masker@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vanilla-masker/-/vanilla-masker-1.2.0.tgz#c2830e9d994a5fecd2261506477c2707fe589756"
-
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
@@ -6993,39 +6899,9 @@ vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 
-vux-blazy@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/vux-blazy/-/vux-blazy-1.6.4.tgz#e33073d902e0a3844ef1a463cce3ca2e0aab47bf"
-
-vux-xscroll@^3.1.10:
-  version "3.1.12"
-  resolved "https://registry.yarnpkg.com/vux-xscroll/-/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
-
-vux@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/vux/-/vux-2.9.2.tgz#9c6664106b57d33a6566c68f756f9a88b1bc1a47"
-  dependencies:
-    "@antv/f2" "^3.1.4-beta.2"
-    array-filter "^1.0.0"
-    array-find "^1.0.0"
-    array-map "^0.0.0"
-    array-shuffle "^1.0.1"
-    autosize "^3.0.20"
-    axios "^0.15.3"
-    big.js "^3.1.3"
-    blueimp-md5 "^2.6.0"
-    countup.js "^1.8.1"
-    fastclick "^1.0.6"
-    lodash.debounce "^4.0.8"
-    lodash.throttle "^4.1.1"
-    object-assign "^4.1.0"
-    qr.js "0.0.0"
-    shake.js "^1.2.2"
-    validator "^9.3.0"
-    vanilla-masker "^1.2.0"
-    vux-blazy "^1.6.4"
-    vux-xscroll "^3.1.10"
-    x-photoswipe "^4.1.3-rc.1"
+vuex@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
 
 watchpack@^1.5.0:
   version "1.6.0"
@@ -7230,10 +7106,6 @@ ws@^4.0.0:
   dependencies:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
-
-x-photoswipe@^4.1.3-rc.1:
-  version "4.1.3-rc.1"
-  resolved "https://registry.yarnpkg.com/x-photoswipe/-/x-photoswipe-4.1.3-rc.1.tgz#e761901752dd3dd1f718e538514b609b5df5f7db"
 
 xregexp@4.0.0:
   version "4.0.0"
