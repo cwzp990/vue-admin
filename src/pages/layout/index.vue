@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView } from './components'
+import { Navbar, Sidebar, AppMain, TagsView } from './children'
 export default {
   name: 'Layout',
   data () {
@@ -35,4 +35,9 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  @include wh(100%,100%);
+}
 </style>

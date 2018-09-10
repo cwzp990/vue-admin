@@ -1,7 +1,6 @@
-<!-- 首页 -->
+<!-- 头部导航 -->
 <template>
-  <div class="dashboard-container">
-    预览界面
+  <div class="navbar">
   </div>
 </template>
 
@@ -23,4 +22,8 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.navbar {
+  height: 50px;
+  line-height: 50px;
+}
 </style>

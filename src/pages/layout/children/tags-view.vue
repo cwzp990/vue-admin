@@ -1,7 +1,6 @@
-<!-- 首页 -->
+<!-- 页面标签 -->
 <template>
-  <div class="dashboard-container">
-    预览界面
+  <div class="tags-view-container">
   </div>
 </template>
 
@@ -23,4 +22,9 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.tags-view-container {
+  @include wh(100%, 34px);
+  background: #fff;
+  border-bottom: 1px solid $juzi;
+}
 </style>
