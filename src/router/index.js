@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-// import Layout from '@/pages/layout/index'
+import Layout from '@/pages/layout/index'
 
 export const routerMap = [
   {
@@ -17,22 +17,22 @@ export const routerMap = [
   {
     path: '/401',
     component: () => import('@/pages/errorPage/401')
+  },
+  {
+    path: '',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: '/dashboard',
+        component: () => import('@/pages/dashboard/index'),
+        name: 'dashboard',
+        meta: {
+          title: 'dashboard'
+        }
+      }
+    ]
   }
-  // {
-  //   path: '',
-  //   component: Layout,
-  //   redirect: 'dashboard',
-  //   children: [
-  //     {
-  //       path: '/dashboard',
-  //       component: '@/pages/dashboard/index',
-  //       name: 'dashboard',
-  //       meta: {
-  //         title: 'dashboard'
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 export default new Router({

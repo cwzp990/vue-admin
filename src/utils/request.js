@@ -22,7 +22,7 @@ const tips = msg => {
 }
 
 const service = axios.create({
-	baseUrl: ' https://easy-mock.com/mock/5b962b5ee0d1a17c279c8873/api',
+  baseUrl: 'https://easy-mock.com/mock/5b962b5ee0d1a17c279c8873/api',
   timeout: 3000
 })
 
@@ -40,7 +40,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    console.log(error) // for debugger
+    // console.log(error) // for debugger
     Promise.reject(error)
   }
 )
@@ -57,7 +57,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('error:', error) // for debugger
+    // console.log('error:', error) // for debugger
     tips(error.msg)
     return Promise.reject(error)
   }

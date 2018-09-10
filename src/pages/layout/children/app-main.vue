@@ -9,19 +9,7 @@
 
 <script>
 export default {
-  name: 'AppMain',
-  data () {
-    return {
-    };
-  },
-
-  components: {},
-
-  computed: {},
-
-  mounted: {},
-
-  methods: {}
+  name: 'AppMain'
 }
 
 </script>

@@ -6,20 +6,8 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
-  },
-
-  components: {},
-
-  computed: {},
-
-  mounted: {},
-
-  methods: {}
+  name: 'SideBar'
 }
-
 </script>
 <style lang='scss' scoped>
 </style>

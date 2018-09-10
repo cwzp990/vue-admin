@@ -7,20 +7,8 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
-  },
-
-  components: {},
-
-  computed: {},
-
-  mounted: {},
-
-  methods: {}
+  name: 'dashboard'
 }
-
 </script>
 <style lang='scss' scoped>
 </style>

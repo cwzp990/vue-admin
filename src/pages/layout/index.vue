@@ -14,23 +14,12 @@
 import { Navbar, Sidebar, AppMain, TagsView } from './children'
 export default {
   name: 'Layout',
-  data () {
-    return {
-    };
-  },
-
   components: {
     Navbar,
     Sidebar,
     AppMain,
     TagsView
-  },
-
-  computed: {},
-
-  mounted: {},
-
-  methods: {}
+  }
 }
 
 </script>
@@ -39,6 +28,6 @@ export default {
 .app-wrapper {
   @include clearfix;
   position: relative;
-  @include wh(100%,100%);
+  @include wh(100%, 100%);
 }
 </style>

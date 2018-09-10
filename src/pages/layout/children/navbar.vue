@@ -6,18 +6,7 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
-  },
-
-  components: {},
-
-  computed: {},
-
-  mounted: {},
-
-  methods: {}
+  name: 'NavBar'
 }
 
 </script>
