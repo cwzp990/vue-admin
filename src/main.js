@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import '@/utils/permission'
+
 import '@/styles/reset.scss' // css resets
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss' // gloval css
@@ -14,5 +16,5 @@ Vue.use(ElementUI)
 new Vue({
   render: h => h(App),
   router,
-  store,
+  store
 }).$mount('#app')

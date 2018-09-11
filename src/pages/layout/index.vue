@@ -1,9 +1,9 @@
 <!-- 整体布局 -->
 <template>
   <div class="app-wrapper">
-    <sidebar class="sidebar-container" />
+    <navbar />
     <div class="main-container">
-      <navbar />
+      <sidebar class="sidebar-container" />
       <tags-view />
       <app-main />
     </div>

@@ -4,6 +4,7 @@
  */
 
 import axios from 'axios'
+import qs from 'qs'
 import store from '../store'
 import { getToken } from '@/utils/auth'
 import { Message } from 'element-ui'
@@ -22,8 +23,13 @@ const tips = msg => {
 }
 
 const service = axios.create({
-  baseUrl: 'https://easy-mock.com/mock/5b962b5ee0d1a17c279c8873/api',
-  timeout: 3000
+  baseURL: 'https://easy-mock.com/mock/5b962b5ee0d1a17c279c8873/api',
+  timeout: 10000,
+  responseType: 'json',
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+  }
 })
 
 /**
@@ -34,14 +40,18 @@ const service = axios.create({
  */
 service.interceptors.request.use(
   config => {
+    // 若是公司的提交能接受json格式，就不需要序列化了
+    if (config.method === 'post') {
+      config.data = qs.stringify(config.data)
+    }
     if (store.getters.token) {
-      config.headers['X-Token'] = getToken()
+      config.headers['Token'] = getToken()
     }
     return config
   },
   error => {
-    // console.log(error) // for debugger
-    Promise.reject(error)
+    console.log(error) // for debugger
+    return Promise.reject(error)
   }
 )
 
@@ -51,13 +61,13 @@ service.interceptors.response.use(
     const res = response.data
     if (res.status !== 200) {
       tips(res.msg)
-      return Promise.reject('error')
+      return Promise.reject(res.msg)
     } else {
-      return response.data
+      return res
     }
   },
   error => {
-    // console.log('error:', error) // for debugger
+    console.log('error:', error) // for debugger
     tips(error.msg)
     return Promise.reject(error)
   }
