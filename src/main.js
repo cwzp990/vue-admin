@@ -10,6 +10,8 @@ import '@/styles/reset.scss' // css resets
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss' // gloval css
 
+import './icons' // icons
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 

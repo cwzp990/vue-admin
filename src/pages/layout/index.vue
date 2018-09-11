@@ -2,8 +2,8 @@
 <template>
   <div class="app-wrapper">
     <navbar />
+    <sidebar />
     <div class="main-container">
-      <sidebar class="sidebar-container" />
       <tags-view />
       <app-main />
     </div>
@@ -29,5 +29,8 @@ export default {
   @include clearfix;
   position: relative;
   @include wh(100%, 100%);
+  .main-container {
+    float: left;
+  }
 }
 </style>
