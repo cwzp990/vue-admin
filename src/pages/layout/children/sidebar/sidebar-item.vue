@@ -30,8 +30,28 @@
 
 <script>
 import Item from './item'
+import { validateUrl } from '@/utils/validate'
 export default {
   name: 'SidebarItem',
+  props: {
+    item: {
+      type: Object,
+      required: true
+    },
+    isNest: {
+      type: Boolean,
+      default: false
+    },
+    basePath: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      onlyOneChild: null
+    }
+  },
   components: {
     Item
   }
