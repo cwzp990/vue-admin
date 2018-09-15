@@ -52,6 +52,35 @@ export default {
       onlyOneChild: null
     }
   },
+  methods: {
+    hasOneShowingChild (children) {
+      const showingChildren = children.filter(item => {
+        if (item.hidden) {
+          return false
+        } else {
+          this.onlyOneChild = item
+          return true
+        }
+      })
+      if (showingChildren.length === 1) {
+        return true
+      }
+      return false
+    },
+    resolvePath (routePath) {
+      return path.resolve(this.basePath, routePath)
+    },
+    isExternalLink (routePath) {
+      return validateURL(routePath)
+    },
+    clickLink (routePath, e) {
+      if (!this.isExternalLink(routePath)) {
+        e.preventDefault()
+        const path = this.resolvePath(routePath)
+        this.$router.push(path)
+      }
+    }
+  },
   components: {
     Item
   }
