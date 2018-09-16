@@ -27,6 +27,9 @@ import SidebarItem from './sidebar-item'
 import { mapGetters } from 'vuex'
 export default {
   name: 'SideBar',
+  /**
+   * 在router模块暴露出路由表，并保存在vuex中，
+   */
   computed: {
     ...mapGetters([
       'routers',

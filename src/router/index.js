@@ -33,7 +33,8 @@ export const routerMap = [
         }
       }
     ]
-  }
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 // 实例化时，只挂载通用的路由表
