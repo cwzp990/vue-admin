@@ -6,7 +6,8 @@
          class="navbar-brand">
         <h1 class="title">VueAdmin</h1>
       </a>
-      <span class="toggle-btn">
+      <span class="toggle-btn"
+            @click="toogleSidebar">
         <svg-icon icon-class="menu"></svg-icon>
       </span>
     </div>
@@ -44,6 +45,11 @@
 import SwitchBtn from '@/components/switch/index'
 export default {
   name: 'NavBar',
+  methods: {
+    toogleSidebar () {
+      this.$store.dispatch('toogleSidebar')
+    }
+  },
   components: {
     SwitchBtn
   }
@@ -75,6 +81,7 @@ export default {
       @include sc(15px, #666);
       line-height: 50px;
       text-align: center;
+      background: red;
       .svg-icon {
         @include svg(14px, #666);
       }

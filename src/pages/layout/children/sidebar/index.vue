@@ -45,11 +45,4 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-@import '../../../../styles/mixin.scss';
-.sidebar-container {
-  float: left;
-  width: 180px;
-  min-height: calc(100vh - 50px);
-  background: #000;
-}
 </style>

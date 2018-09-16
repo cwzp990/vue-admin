@@ -12,7 +12,6 @@
         <el-menu-item :index="resolvePath(onlyOneChild.path)"
                       :class="{'submenu-title-noDropdown':!isNest}">
           <item v-if="onlyOneChild.meta"
-                :icon="onlyOneChild.meta.icon||item.meta.icon"
                 :title="onlyOneChild.meta.title"></item>
         </el-menu-item>
       </a>
@@ -22,7 +21,6 @@
                 :index="item.name||item.path">
       <template slot="title">
         <item v-if="item.meta"
-              :icon="item.meta.icon"
               :title="item.meta.title"></item>
       </template>
       <!-- 递归 -->
@@ -42,7 +40,6 @@
            @click="clickLink(child.path,$event)">
           <el-menu-item :index="resolvePath(child.path)">
             <item v-if="child.meta"
-                  :icon="child.meta.icon"
                   :title="child.meta.title" />
           </el-menu-item>
         </a>
@@ -70,10 +67,6 @@ export default {
       type: String,
       default: ''
     }
-  },
-  created () {
-    console.log(!this.item.hidden)
-    console.log(this.item.children)
   },
   data () {
     return {

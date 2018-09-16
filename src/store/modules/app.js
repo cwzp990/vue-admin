@@ -24,7 +24,7 @@ const app = {
     }
   },
   actions: {
-    ToogleSidebar: ({commit}) => {
+    toogleSidebar: ({commit}) => {
       commit('TOOGLE_SIDEBAR')
     },
     CloseSidebar: ({commit},{withoutAnimation}) => {

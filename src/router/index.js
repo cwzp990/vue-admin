@@ -34,6 +34,21 @@ export const routerMap = [
       }
     ]
   },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/charts',
+    children: [
+      {
+        path: 'charts',
+        component: () => import('@/pages/charts/index'),
+        name: 'charts',
+        meta: {
+          title: 'charts'
+        }
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

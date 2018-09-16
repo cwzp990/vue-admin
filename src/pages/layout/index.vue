@@ -2,7 +2,7 @@
 <template>
   <div class="app-wrapper">
     <navbar />
-    <sidebar />
+    <sidebar class="sidebar-container" />
     <div class="main-container">
       <tags-view />
       <app-main />
@@ -29,7 +29,15 @@ export default {
   @include clearfix;
   position: relative;
   @include wh(100%, 100%);
+  .sidebar-container {
+    transition: width 0.3s;
+    float: left;
+    width: 180px;
+    min-height: calc(100vh - 50px);
+    background: #000;
+  }
   .main-container {
+    transition: margin-left 0.3s;
     float: left;
   }
 }
