@@ -150,15 +150,22 @@
         </el-form>
       </el-tab-pane>
     </el-tabs>
-    <div class="charts-wrapper">
-      <div class="charts-main">
-      </div>
+    <div id="charts-wrapper">
     </div>
   </div>
 </template>
 
 <script>
 import { getLoanData } from '@/api/charts'
+// 引入基本模板
+let echarts = require('echarts/lib/echarts')
+// 引入饼图组件
+require('echarts/lib/chart/pie')
+// 引入提示框和title组件
+require('echarts/lib/component/tooltip')
+require('echarts/lib/component/title')
+require('echarts/lib/component/legend');
+require('echarts/lib/component/markLine')
 export default {
   name: 'Charts',
   data () {
@@ -195,7 +202,8 @@ export default {
 
         }
       },
-      data: {}
+      data: {},
+      chart: null // echarts实例
     }
   },
   created () {
@@ -203,7 +211,55 @@ export default {
       this.data = res.data
     })
   },
+  mounted () {
+    this.initChart()
+  },
+  beforeDestroy () {
+    if (!this.chart) {
+      return
+    }
+    this.chart.dispose()
+    this.chart = null
+  },
   methods: {
+    initChart () {
+      this.chart = echarts.init(document.getElementById('charts-wrapper'))
+      this.chart.setOption({
+        tooltip: {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['第一部分', '第二部分', '第三部分', '第四部分']
+        },
+        series: [
+          {
+            name: '访问',
+            type: 'pie',
+            radius: '62%',
+            center: ['50%', '65%'],
+            minAngle: '15',
+            data: [
+              { name: "第一部分", value: 4 },
+              { name: "第二部分", value: 7 },
+              { name: "第三部分", value: 3 },
+              { name: "第四部分", value: 1 },
+            ],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  formatter: "{b} :\n  {c} \n ({d}%)",
+                  position: "inner"
+                }
+              }
+            }
+          }
+        ]
+      })
+    },
     drawCharts (data) {
       console.log(data)
     },
@@ -224,8 +280,9 @@ export default {
       width: auto;
     }
   }
-  .charts-wrapper {
+  #charts-wrapper {
     flex: 1;
+    @include wh(100%, 100%);
   }
 }
 </style>
