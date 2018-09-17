@@ -21,5 +21,6 @@ export default {
   position: relative;
   overflow: hidden;
   padding: 10px 20px;
+  box-sizing: border-box;
 }
 </style>

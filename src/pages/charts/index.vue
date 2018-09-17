@@ -1,12 +1,12 @@
 <!-- charts图表 -->
 <template>
   <div class="charts-container">
-    <el-tabs v-model="first"
+    <el-tabs :v-model="activeName"
              type="border-card"
-             @tab-click="handleClick"
              class="chartsForm">
       <el-tab-pane label="商业贷款">
-        <el-form v-model="charts.business">
+        <el-form v-model="charts.business"
+                 ref="business">
           <el-form-item label="计算方式">
             <el-select v-model="charts.business.calc"
                        placeholder="请选择计算方式">
@@ -25,28 +25,29 @@
               <el-option v-for="item in data.time"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="贷款年利率">
             <el-select v-model="charts.business.interest"
                        placeholder="请选择年利率">
-              <el-option v-for="item in data.interest"
+              <el-option v-for="item in data.business"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
             <el-input v-model="charts.business.number"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
-                       @click="submitForm('charts.business')">开始计算</el-button>
-            <el-button @click="resetForm('charts.business')">重置</el-button>
+                       @click="drawCharts(charts.business)">开始计算</el-button>
+            <el-button @click="resetForm('business')">重置</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="公积金贷">
-        <el-form v-model="charts.public">
+        <el-form v-model="charts.public"
+                 ref="public">
           <el-form-item label="计算方式">
             <el-select v-model="charts.public.calc"
                        placeholder="请选择计算方式">
@@ -65,28 +66,29 @@
               <el-option v-for="item in data.time"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="贷款年利率">
             <el-select v-model="charts.public.interest"
                        placeholder="请选择年利率">
-              <el-option v-for="item in data.interest"
+              <el-option v-for="item in data.public"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
             <el-input v-model="charts.public.number"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
-                       @click="submitForm('charts.public')">开始计算</el-button>
-            <el-button @click="resetForm('charts.public')">重置</el-button>
+                       @click="drawCharts(charts.public)">开始计算</el-button>
+            <el-button @click="resetForm('public')">重置</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="组合贷款">
-        <el-form v-model="charts.group">
+        <el-form v-model="charts.group"
+                 ref="group">
           <el-form-item label="计算方式">
             <el-select v-model="charts.group.calc"
                        placeholder="请选择计算方式">
@@ -105,16 +107,16 @@
               <el-option v-for="item in data.time"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="商业贷款年利率">
             <el-select v-model="charts.group.businessInterest"
                        placeholder="请选择年利率">
-              <el-option v-for="item in data.interest"
+              <el-option v-for="item in data.business"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
             <el-input v-model="charts.group.number1"></el-input>
           </el-form-item>
@@ -127,23 +129,24 @@
               <el-option v-for="item in data.time"
                          :key="item.value"
                          :label="item.name"
-                         value="item.value"></el-option>
+                         :value="item.value"></el-option>
             </el-select>
-            <el-form-item label="公积金贷款年利率">
-              <el-select v-model="charts.group.publicInterest"
-                         placeholder="请选择年利率">
-                <el-option v-for="item in data.interest"
-                           :key="item.value"
-                           :label="item.name"
-                           value="item.value"></el-option>
-              </el-select>
-              <el-input v-model="charts.group.number2"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary"
-                         @click="submitForm('charts.group')">开始计算</el-button>
-              <el-button @click="resetForm('charts.group')">重置</el-button>
-            </el-form-item>
+          </el-form-item>
+          <el-form-item label="公积金贷款年利率">
+            <el-select v-model="charts.group.publicInterest"
+                       placeholder="请选择年利率">
+              <el-option v-for="item in data.public"
+                         :key="item.value"
+                         :label="item.name"
+                         :value="item.value"></el-option>
+            </el-select>
+            <el-input v-model="charts.group.number2"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary"
+                       @click="drawCharts(charts.group)">开始计算</el-button>
+            <el-button @click="resetForm('group')">重置</el-button>
+          </el-form-item>
         </el-form>
       </el-tab-pane>
     </el-tabs>
@@ -155,11 +158,12 @@
 </template>
 
 <script>
-import 'api' from '@/api/charts'
+import { getLoanData } from '@/api/charts'
 export default {
   name: 'Charts',
   data () {
     return {
+      activeName: 'first',
       charts: {
         // 商业贷款
         business: {
@@ -191,11 +195,21 @@ export default {
 
         }
       },
-      data: [],
+      data: {}
     }
   },
   created () {
-
+    getLoanData().then(res => {
+      this.data = res.data
+    })
+  },
+  methods: {
+    drawCharts (data) {
+      console.log(data)
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields();
+    }
   }
 }
 
@@ -204,14 +218,14 @@ export default {
 @import '../../styles/mixin.scss';
 .charts-container {
   display: flex;
-  @include wh(100%, calc(100vh - 85px));
   .chartsForm {
     flex: 1;
-    @include wh(100%, 100%);
+    .el-input {
+      width: auto;
+    }
   }
   .charts-wrapper {
     flex: 1;
-    @include wh(100%, 100%);
   }
 }
 </style>

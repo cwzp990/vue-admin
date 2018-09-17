@@ -39,6 +39,7 @@ export default {
   .main-container {
     transition: margin-left 0.3s;
     float: left;
+    width: calc(100vw - 185px);
   }
 }
 </style>
