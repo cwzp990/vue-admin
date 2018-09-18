@@ -150,7 +150,23 @@
         </el-form>
       </el-tab-pane>
     </el-tabs>
-    <div id="charts-wrapper">
+    <div class="charts-wrapper">
+      <div class="charts-btn">
+        <el-button type="primary"
+                   @click="calc_interest">等额本息</el-button>
+        <el-button type="primary"
+                   @click="calc_money">等额本金</el-button>
+      </div>
+      <div class="charts-down">
+        <div id="charts-main"
+             ref="charts"></div>
+        <div class="charts-data">
+          <p>贷款金额{{result.interest}}元</p>
+          <p>每月还款{{result.pay}}元</p>
+          <p>总利息{{result.interest_all}}元</p>
+          <p>总还款{{result.pay_all}}元</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -203,7 +219,13 @@ export default {
         }
       },
       data: {},
-      chart: null // echarts实例
+      chart: null, // echarts实例
+      result: {
+        interest: '',
+        pay: '',
+        interest_all: '',
+        pay_all: ''
+      }
     }
   },
   created () {
@@ -223,7 +245,7 @@ export default {
   },
   methods: {
     initChart () {
-      this.chart = echarts.init(document.getElementById('charts-wrapper'))
+      this.chart = echarts.init(document.getElementById('charts-main'))
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
@@ -231,21 +253,19 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: 'left',
-          data: ['第一部分', '第二部分', '第三部分', '第四部分']
+          bottom: 'bottom',
+          data: ['贷款金额', '总利息']
         },
         series: [
           {
             name: '访问',
             type: 'pie',
             radius: '62%',
-            center: ['50%', '65%'],
+            center: ['50%', '50%'],
             minAngle: '15',
             data: [
-              { name: "第一部分", value: 4 },
-              { name: "第二部分", value: 7 },
-              { name: "第三部分", value: 3 },
-              { name: "第四部分", value: 1 },
+              { name: "贷款金额", value: 4 },
+              { name: "总利息", value: 7 }
             ],
             itemStyle: {
               normal: {
@@ -265,6 +285,12 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields();
+    },
+    // 等额本息
+    calc_interest () {
+    },
+    // 等额本金
+    calc_money () {
     }
   }
 }
@@ -280,9 +306,36 @@ export default {
       width: auto;
     }
   }
-  #charts-wrapper {
+  .charts-wrapper {
+    display: flex;
     flex: 1;
-    @include wh(100%, 100%);
+    flex-direction: column;
+    height: calc(100vh - 105px);
+    .charts-btn {
+      display: flex;
+      align-items: center;
+      flex: 0 0 20%;
+      margin-left: 100px;
+    }
+    .charts-down {
+      display: flex;
+      flex: 1;
+      #charts-main {
+        flex: 1;
+        height: 500px;
+      }
+      .charts-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 0 0 30%;
+        height: 500px;
+        @include sc(14px, #666);
+        p {
+          margin-bottom: 10px;
+        }
+      }
+    }
   }
 }
 </style>
