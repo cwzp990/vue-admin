@@ -1,10 +1,11 @@
 <!-- charts图表 -->
 <template>
   <div class="charts-container">
-    <el-tabs :v-model="activeName"
+    <el-tabs v-model="activeName"
              type="border-card"
              class="chartsForm">
-      <el-tab-pane label="商业贷款">
+      <el-tab-pane label="商业贷款"
+                   name="1">
         <el-form v-model="charts.business"
                  ref="business">
           <el-form-item label="计算方式">
@@ -16,7 +17,7 @@
                          value="area"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="贷款金额">
+          <el-form-item label="贷款金额(万元)">
             <el-input v-model="charts.business.money"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
@@ -45,7 +46,8 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="公积金贷">
+      <el-tab-pane label="公积金贷"
+                   name="2">
         <el-form v-model="charts.public"
                  ref="public">
           <el-form-item label="计算方式">
@@ -57,7 +59,7 @@
                          value="area"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="贷款金额">
+          <el-form-item label="贷款金额(万元)">
             <el-input v-model="charts.public.money"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
@@ -86,7 +88,8 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="组合贷款">
+      <el-tab-pane label="组合贷款"
+                   name="3">
         <el-form v-model="charts.group"
                  ref="group">
           <el-form-item label="计算方式">
@@ -98,7 +101,7 @@
                          value="area"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="商业贷款金额">
+          <el-form-item label="商业贷款金额(万元)">
             <el-input v-model="charts.group.businessMoney"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
@@ -120,7 +123,7 @@
             </el-select>
             <el-input v-model="charts.group.number1"></el-input>
           </el-form-item>
-          <el-form-item label="公积金贷款金额">
+          <el-form-item label="公积金贷款金额(万元)">
             <el-input v-model="charts.group.publicMoney"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
@@ -161,10 +164,10 @@
         <div id="charts-main"
              ref="charts"></div>
         <div class="charts-data">
-          <p>贷款金额{{result.interest}}元</p>
-          <p>每月还款{{result.pay}}元</p>
-          <p>总利息{{result.interest_all}}元</p>
-          <p>总还款{{result.pay_all}}元</p>
+          <p v-show="calc">贷款金额{{results.all_money}}</p>
+          <p v-show="calc">每月还款{{results.month_money}}</p>
+          <p v-show="calc">总利息{{results.all_interest}}</p>
+          <p v-show="calc">总还款{{results.all_pay}}</p>
         </div>
       </div>
     </div>
@@ -186,7 +189,8 @@ export default {
   name: 'Charts',
   data () {
     return {
-      activeName: 'first',
+      activeName: '1',
+      calc: false,
       charts: {
         // 商业贷款
         business: {
@@ -219,13 +223,13 @@ export default {
         }
       },
       data: {},
-      chart: null, // echarts实例
-      result: {
-        interest: '',
-        pay: '',
-        interest_all: '',
-        pay_all: ''
-      }
+      results: {
+        all_money: 0,  // 贷款金额
+        month_money: 0,  // 月供
+        all_interest: 0, // 总利息
+        all_pay: 0 // 总还款
+      },
+      chart: null // echarts实例
     }
   },
   created () {
@@ -242,6 +246,8 @@ export default {
     }
     this.chart.dispose()
     this.chart = null
+  },
+  computed: {
   },
   methods: {
     initChart () {
@@ -264,8 +270,8 @@ export default {
             center: ['50%', '50%'],
             minAngle: '15',
             data: [
-              { name: "贷款金额", value: 4 },
-              { name: "总利息", value: 7 }
+              { name: "贷款金额", value: 0 },
+              { name: "总利息", value: 0 }
             ],
             itemStyle: {
               normal: {
@@ -281,15 +287,43 @@ export default {
       })
     },
     drawCharts (data) {
-      console.log(data)
+      this.calc = true
+      if (this.activeName === '1') {
+        this.calc_interest(data)
+      } else if (this.activeName === '2') {
+        this.calc_interest(data)
+      } else if (this.activeName === '3') {
+        this.calc_interest(data)
+      }
     },
     resetForm (formName) {
       this.$refs[formName].resetFields();
     },
-    // 等额本息
-    calc_interest () {
+    /**
+     * 等额本息
+     * 每月月供额=〔贷款本金×月利率×(1＋月利率)＾还款月数〕÷〔(1＋月利率)＾还款月数-1〕
+     * 每月应还利息=贷款本金×月利率×〔(1+月利率)^还款月数-(1+月利率)^(还款月序号-1)〕÷〔(1+月利率)^还款月数-1〕
+     * 每月应还本金=贷款本金×月利率×(1+月利率)^(还款月序号-1)÷〔(1+月利率)^还款月数-1〕
+     * 总利息=还款月数×每月月供额-贷款本金
+     */
+    calc_interest (data) {
+      const money = data.money * 10000
+      const interest = data.interest / 1200 + 1
+      const time = parseInt(data.time)
+      const temp = Math.pow(interest, time)
+      this.results.all_money = money
+      this.results.month_money = ((money * (interest - 1) * temp) / (temp - 1)).toFixed(2)
+      this.results.all_interest = time * parseInt(this.results.month_money) - money
+      this.results.all_pay = time * parseInt(this.results.month_money)
     },
-    // 等额本金
+    /**
+     * 等额本金
+     * 每月月供额=(贷款本金÷还款月数)+(贷款本金-已归还本金累计额)×月利率
+     * 每月应还本金=贷款本金÷还款月数
+     * 每月应还利息=剩余本金×月利率=(贷款本金-已归还本金累计额)×月利率
+     * 每月月供递减额=每月应还本金×月利率=贷款本金÷还款月数×月利率
+     * 总利息=〔(总贷款额÷还款月数+总贷款额×月利率)+总贷款额÷还款月数×(1+月利率)〕÷2×还款月数-总贷款额
+     */
     calc_money () {
     }
   }
@@ -314,7 +348,7 @@ export default {
     .charts-btn {
       display: flex;
       align-items: center;
-      flex: 0 0 20%;
+      flex: 0 0 15%;
       margin-left: 100px;
     }
     .charts-down {
