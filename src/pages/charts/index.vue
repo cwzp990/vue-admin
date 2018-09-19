@@ -102,10 +102,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="商业贷款金额(万元)">
-            <el-input v-model="charts.group.businessMoney"></el-input>
+            <el-input v-model="charts.group.business.money"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
-            <el-select v-model="charts.group.businessTime"
+            <el-select v-model="charts.group.business.time"
                        placeholder="请选择期限">
               <el-option v-for="item in data.time"
                          :key="item.value"
@@ -114,20 +114,20 @@
             </el-select>
           </el-form-item>
           <el-form-item label="商业贷款年利率">
-            <el-select v-model="charts.group.businessInterest"
+            <el-select v-model="charts.group.business.interest"
                        placeholder="请选择年利率">
               <el-option v-for="item in data.business"
                          :key="item.value"
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.group.number1"></el-input>
+            <el-input v-model="charts.group.business.number"></el-input>
           </el-form-item>
           <el-form-item label="公积金贷款金额(万元)">
-            <el-input v-model="charts.group.publicMoney"></el-input>
+            <el-input v-model="charts.group.public.money"></el-input>
           </el-form-item>
           <el-form-item label="贷款期限">
-            <el-select v-model="charts.group.publicTime"
+            <el-select v-model="charts.group.public.time"
                        placeholder="请选择期限">
               <el-option v-for="item in data.time"
                          :key="item.value"
@@ -136,14 +136,14 @@
             </el-select>
           </el-form-item>
           <el-form-item label="公积金贷款年利率">
-            <el-select v-model="charts.group.publicInterest"
+            <el-select v-model="charts.group.public.interest"
                        placeholder="请选择年利率">
               <el-option v-for="item in data.public"
                          :key="item.value"
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.group.number2"></el-input>
+            <el-input v-model="charts.group.public.number"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
@@ -211,15 +211,18 @@ export default {
         // 组合贷款
         group: {
           calc: '',
-          businessMoney: '',
-          businessTime: '',
-          businessInterest: '',
-          publicMoney: '',
-          publicTime: '',
-          publicInterest: '',
-          number1: '',
-          number2: ''
-
+          business: {
+            money: '',
+            time: '',
+            interest: '',
+            number: ''
+          },
+          public: {
+            money: '',
+            time: '',
+            interest: '',
+            number: ''
+          }
         }
       },
       data: {},
@@ -251,8 +254,7 @@ export default {
   },
   methods: {
     initChart () {
-      this.chart = echarts.init(document.getElementById('charts-main'))
-      this.chart.setOption({
+      let options = {
         tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -270,8 +272,8 @@ export default {
             center: ['50%', '50%'],
             minAngle: '15',
             data: [
-              { name: "贷款金额", value: 0 },
-              { name: "总利息", value: 0 }
+              { name: "贷款金额", value: this.results.all_money },
+              { name: "总利息", value: this.results.all_interest }
             ],
             itemStyle: {
               normal: {
@@ -284,16 +286,30 @@ export default {
             }
           }
         ]
-      })
+      }
+      this.chart = echarts.init(document.getElementById('charts-main'))
+      this.chart.setOption(options)
     },
     drawCharts (data) {
       this.calc = true
       if (this.activeName === '1') {
-        this.calc_interest(data)
+        this.results.all_money = this.calc_interest(data).all_money
+        this.results.month_money = this.calc_interest(data).month_money
+        this.results.all_interest = this.calc_interest(data).all_interest
+        this.results.all_pay = this.calc_interest(data).all_pay
+        this.initChart()
       } else if (this.activeName === '2') {
-        this.calc_interest(data)
+        this.results.all_money = this.calc_interest(data).all_money
+        this.results.month_money = this.calc_interest(data).month_money
+        this.results.all_interest = this.calc_interest(data).all_interest
+        this.results.all_pay = this.calc_interest(data).all_pay
+        this.initChart()
       } else if (this.activeName === '3') {
-        this.calc_interest(data)
+        this.results.all_money = this.calc_interest(data.business).all_money + this.calc_interest(data.public).all_money
+        this.results.month_money = this.calc_interest(data.business).month_money + this.calc_interest(data.public).month_money
+        this.results.all_interest = this.calc_interest(data.business).all_interest + this.calc_interest(data.public).all_interest
+        this.results.all_pay = this.calc_interest(data.business).all_pay + this.calc_interest(data.public).all_pay
+        this.initChart()
       }
     },
     resetForm (formName) {
@@ -311,10 +327,12 @@ export default {
       const interest = data.interest / 1200 + 1
       const time = parseInt(data.time)
       const temp = Math.pow(interest, time)
-      this.results.all_money = money
-      this.results.month_money = ((money * (interest - 1) * temp) / (temp - 1)).toFixed(2)
-      this.results.all_interest = time * parseInt(this.results.month_money) - money
-      this.results.all_pay = time * parseInt(this.results.month_money)
+      return {
+        all_money: money,
+        month_money: ((money * (interest - 1) * temp) / (temp - 1)).toFixed(2),
+        all_interest: time * parseInt(this.results.month_money) - money,
+        all_pay: time * parseInt(this.results.month_money)
+      }
     },
     /**
      * 等额本金
