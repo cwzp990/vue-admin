@@ -29,22 +29,63 @@ export const routerMap = [
         component: () => import('@/pages/dashboard/index'),
         name: 'dashboard',
         meta: {
-          title: 'dashboard'
+          title: '首页'
         }
       }
     ]
   },
   {
-    path: '/',
+    path: '/list',
     component: Layout,
-    redirect: '/charts',
+    redirect: '/list/index',
     children: [
       {
-        path: 'charts',
+        path: 'index',
+        component: () => import('@/pages/list/index'),
+        name: 'list',
+        meta: {
+          title: '列表'
+        }
+      }
+    ]
+  },
+  {
+    path: '/charts',
+    component: Layout,
+    redirect: '/charts/index',
+    meta: {
+      title: '图表'
+    },
+    children: [
+      {
+        path: 'index',
         component: () => import('@/pages/charts/index'),
+        name: 'example',
+        meta: {
+          title: 'example'
+        }
+      },
+      {
+        path: 'others',
+        component: () => import('@/pages/charts/charts'),
         name: 'charts',
         meta: {
           title: 'charts'
+        }
+      }
+    ]
+  },
+  {
+    path: '/maps',
+    component: Layout,
+    redirect: '/maps/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/pages/maps/index'),
+        name: 'maps',
+        meta: {
+          title: '地图'
         }
       }
     ]
@@ -65,7 +106,7 @@ export const asyncRouterMap = [
     redirect: '/permission/index',
     alwaysShow: true,
     meta: {
-      title: 'permission',
+      title: '权限测试',
       icon: 'lock',
       roles: ['admin', 'editor'] // 设置权限，通用页面
     },

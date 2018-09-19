@@ -186,7 +186,7 @@ require('echarts/lib/component/title')
 require('echarts/lib/component/legend');
 require('echarts/lib/component/markLine')
 export default {
-  name: 'Charts',
+  name: 'Example',
   data () {
     return {
       activeName: '1',
