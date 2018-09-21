@@ -45,7 +45,14 @@ export const routerMap = [
         name: 'list',
         meta: {
           title: '列表'
-        }
+        },
+        children: [
+          {
+            path: 'options',
+            component: () => import('@/pages/list/options'),
+            hidden: true
+          }
+        ]
       }
     ]
   },

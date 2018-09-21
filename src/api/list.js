@@ -11,3 +11,14 @@ export function getList(line, opened) {
     data
   })
 }
+
+export function getListOptions(name) {
+  const data = {
+    name
+  }
+  return request({
+    url: '/list/options',
+    method: 'post',
+    data
+  })
+}
