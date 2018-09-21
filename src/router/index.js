@@ -38,14 +38,14 @@ export const routerMap = [
     path: '/list',
     component: Layout,
     redirect: '/list/index',
+    meta: {
+      title: '列表'
+    },
     children: [
       {
         path: 'index',
         component: () => import('@/pages/list/index'),
         name: 'list',
-        meta: {
-          title: '列表'
-        },
         children: [
           {
             path: 'options',
