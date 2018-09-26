@@ -1,7 +1,8 @@
 <!-- 锁屏界面 -->
 <template>
   <div class="lock">
-    锁屏
+    <div class="main"></div>
+    <div class="time"></div>
   </div>
 </template>
 
