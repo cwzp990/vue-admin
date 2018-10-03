@@ -1,7 +1,7 @@
 <!-- 首页 -->
 <template>
   <div class="dashboard-container">
-    预览界面
+    这是预览界面
   </div>
 </template>
 

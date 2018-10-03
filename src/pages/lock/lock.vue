@@ -1,7 +1,7 @@
 <!-- 锁屏界面 -->
 <template>
   <div class="lock">
-    锁屏界面
+    这是锁屏界面
   </div>
 </template>
 
