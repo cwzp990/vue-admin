@@ -2,15 +2,20 @@
 <template>
   <div class="panel-wrapper">
     <div class="header">
-      <h3>{{title}}</h3>
+      <h3 class="title">{{title}}</h3>
       <div class="btn">
-        <svg-icon icon-class="refresh"></svg-icon>
-        <svg-icon icon-class="max"></svg-icon>
-        <svg-icon icon-class="min"></svg-icon>
-        <svg-icon icon-class="close"></svg-icon>
+        <svg-icon icon-class="refresh"
+                  @click="onRefresh"></svg-icon>
+        <svg-icon icon-class="max"
+                  @click="onMax"></svg-icon>
+        <svg-icon icon-class="min"
+                  @click="onMin"></svg-icon>
+        <svg-icon icon-class="close"
+                  @click="onClose"></svg-icon>
       </div>
     </div>
-    <div class="main"
+    <div :id="wrapperName"
+         class="wrapper"
          v-show="mainShow">
       <slot></slot>
     </div>
@@ -25,9 +30,27 @@ export default {
       type: String,
       default: ''
     },
+    wrapperName: {
+      type: String,
+      default: 'charts-main'
+    },
     mainShow: {
       type: Boolean,
       default: true
+    }
+  },
+  methods: {
+    onRefresh () {
+      console.log('refresh')
+    },
+    onMax () {
+      console.log('max')
+    },
+    onMin () {
+      console.log('min')
+    },
+    onClose () {
+      console.log('close')
     }
   }
 }
@@ -41,11 +64,19 @@ export default {
     display: flex;
     justify-content: space-between;
     background: #fafafa;
-    color: #666;
-    line-height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    .title {
+      @include sc(12px, #666);
+      font-weight: 700;
+      line-height: 40px;
+    }
     .btn {
       display: flex;
     }
+  }
+  .wrapper {
+    min-height: 300px;
   }
 }
 </style>
