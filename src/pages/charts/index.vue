@@ -37,7 +37,7 @@
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.business.number"></el-input>
+            <!-- <el-input v-model="charts.business.number"></el-input> -->
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
@@ -79,7 +79,7 @@
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.public.number"></el-input>
+            <!-- <el-input v-model="charts.public.number"></el-input> -->
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
@@ -121,7 +121,7 @@
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.group.business.number"></el-input>
+            <!-- <el-input v-model="charts.group.business.number"></el-input> -->
           </el-form-item>
           <el-form-item label="公积金贷款金额(万元)">
             <el-input v-model="charts.group.public.money"></el-input>
@@ -143,7 +143,7 @@
                          :label="item.name"
                          :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="charts.group.public.number"></el-input>
+            <!-- <el-input v-model="charts.group.public.number"></el-input> -->
           </el-form-item>
           <el-form-item>
             <el-button type="primary"
