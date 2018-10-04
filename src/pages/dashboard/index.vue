@@ -46,14 +46,46 @@
         </panel>
       </el-col>
     </el-row>
+    <el-row :gutter="8">
+      <el-col :xs="{span: 24}"
+              :sm="{span: 24}"
+              :md="{span: 24}"
+              :lg="{span: 12}"
+              :xl="{span: 12}">
+        <panel title="柱状图"
+               wrapperName="bar-wrapper"></panel>
+      </el-col>
+      <el-col :xs="{span: 24}"
+              :sm="{span: 12}"
+              :md="{span: 12}"
+              :lg="{span: 6}"
+              :xl="{span: 6}">
+        <panel title="todoList"
+               wrapperName="list-wrapper">
+          <todo-list></todo-list>
+        </panel>
+      </el-col>
+      <el-col :xs="{span: 24}"
+              :sm="{span: 12}"
+              :md="{span: 12}"
+              :lg="{span: 6}"
+              :xl="{span: 6}">
+        <panel title="boxCard"
+               wrapperName="card-wrapper">
+          <box-card></box-card>
+        </panel>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import Panel from 'components/panel/index'
+import TodoList from 'components/todo-list/index'
+import BoxCard from 'components/box-card/index'
 // 引入基本模板
 let echarts = require('echarts/lib/echarts')
-// 引入饼图组件
+// 引入折线图组件
 require('echarts/lib/chart/line')
 // 引入柱图组件
 require('echarts/lib/chart/bar')
@@ -69,7 +101,7 @@ export default {
   },
   methods: {
     initChart () {
-      let options = {
+      let options1 = {
         tooltip: {
           trigger: 'axis'
         },
@@ -122,11 +154,62 @@ export default {
         }]
       }
       this.chart = echarts.init(document.getElementById('control-wrapper'))
-      this.chart.setOption(options)
+      this.chart.setOption(options1)
+      let options2 = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        grid: {
+          top: 10,
+          left: '2%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [{
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          axisTick: {
+            alignWithLabel: true
+          }
+        }],
+        yAxis: [{
+          type: 'value',
+          axisTick: {
+            show: false
+          }
+        }],
+        series: [{
+          name: 'pageA',
+          type: 'bar',
+          stack: 'vistors',
+          barWidth: '60%',
+          data: [79, 52, 200, 334, 390, 330, 220],
+        }, {
+          name: 'pageB',
+          type: 'bar',
+          stack: 'vistors',
+          barWidth: '60%',
+          data: [80, 52, 200, 334, 390, 330, 220],
+        }, {
+          name: 'pageC',
+          type: 'bar',
+          stack: 'vistors',
+          barWidth: '60%',
+          data: [30, 52, 200, 334, 390, 330, 220],
+        }]
+      }
+      this.chart = echarts.init(document.getElementById('bar-wrapper'))
+      this.chart.setOption(options2)
     }
   },
   components: {
-    Panel
+    Panel,
+    TodoList,
+    BoxCard
   }
 }
 </script>

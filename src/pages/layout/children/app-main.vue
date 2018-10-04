@@ -17,7 +17,7 @@ export default {
 <style lang='scss' scoped>
 .app-main {
   // 84 = navbar + tags-view = 50 + 34 + 1
-  min-height: calc(100vh - 85px);
+  height: calc(100vh - 85px);
   position: relative;
   overflow-y: auto;
   padding: 10px 20px;
