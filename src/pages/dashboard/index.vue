@@ -60,10 +60,7 @@
               :md="{span: 12}"
               :lg="{span: 6}"
               :xl="{span: 6}">
-        <panel title="todoList"
-               wrapperName="list-wrapper">
-          <todo-list></todo-list>
-        </panel>
+        <todo-list></todo-list>
       </el-col>
       <el-col :xs="{span: 24}"
               :sm="{span: 12}"

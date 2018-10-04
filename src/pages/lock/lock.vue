@@ -1,7 +1,18 @@
 <!-- 锁屏界面 -->
 <template>
   <div class="lock">
-    这是锁屏界面
+    <div class="logo">VueAdmin</div>
+    <div class="lock-main">
+      <p>欢迎您回来</p>
+      <p>使用图案进行解锁</p>
+      <div class="lock-box">
+        <ul>
+          <li v-for="(item,index) in list" :key="index" v-if="index<=8">
+            <div class="dots"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

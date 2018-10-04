@@ -40,24 +40,15 @@ export const routerMap = [
     path: '/list',
     component: Layout,
     redirect: '/list/index',
-    meta: {
-      title: '列表'
-    },
+    name: 'List',
     children: [
       {
         path: 'index',
+        name: 'ListChild',
         component: () => import('@/pages/list/index'),
-        name: 'list',
         meta: {
-          title: 'list'
-        },
-        children: [
-          {
-            path: 'options',
-            component: () => import('@/pages/list/options'),
-            hidden: true
-          }
-        ]
+          title: '列表'
+        }
       }
     ]
   },
@@ -99,6 +90,21 @@ export const routerMap = [
         name: 'maps',
         meta: {
           title: '地图'
+        }
+      }
+    ]
+  },
+  {
+    path: '/about',
+    component: Layout,
+    redirect: '/about/me',
+    children: [
+      {
+        path: 'resume',
+        component: () => import('@/pages/about/resume'),
+        name: 'resume',
+        meta: {
+          title: '关于作者'
         }
       }
     ]
