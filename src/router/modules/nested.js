@@ -5,7 +5,8 @@ const nestedRouter = {
   redirect: '/nested/menu1/menu1-1',
   name: 'Nested',
   meta: {
-    title: '嵌套页面'
+    title: '嵌套页面',
+    icon: 'page'
   },
   children: [
     {

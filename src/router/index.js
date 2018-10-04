@@ -31,7 +31,8 @@ export const routerMap = [
         component: () => import('@/pages/dashboard/index'),
         name: 'dashboard',
         meta: {
-          title: '首页'
+          title: '首页',
+          icon: 'home'
         }
       }
     ]
@@ -47,7 +48,8 @@ export const routerMap = [
         name: 'ListChild',
         component: () => import('@/pages/list/index'),
         meta: {
-          title: '列表'
+          title: '列表',
+          icon: 'list'
         }
       }
     ]
@@ -57,7 +59,8 @@ export const routerMap = [
     component: Layout,
     redirect: '/charts/index',
     meta: {
-      title: '图表'
+      title: '图表',
+      icon: 'chart'
     },
     children: [
       {
@@ -89,7 +92,8 @@ export const routerMap = [
         component: () => import('@/pages/maps/index'),
         name: 'maps',
         meta: {
-          title: '地图'
+          title: '地图',
+          icon: 'map'
         }
       }
     ]
@@ -104,7 +108,8 @@ export const routerMap = [
         component: () => import('@/pages/about/resume'),
         name: 'resume',
         meta: {
-          title: '关于作者'
+          title: '关于作者',
+          icon: 'author'
         }
       }
     ]

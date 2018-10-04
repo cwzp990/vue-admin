@@ -73,6 +73,11 @@ export default {
     }
     .btn {
       display: flex;
+      align-items: center;
+      .svg-icon {
+        @include svg(14px, #b2b2b2);
+        margin-right: 10px;
+      }
     }
   }
   .wrapper {

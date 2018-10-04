@@ -220,8 +220,11 @@ export default {
     align-items: center;
     height: 80px;
     @include sc(14px, #fff);
+    p:first-child {
+      margin-bottom: 10px;
+    }
     .svg-icon {
-      @include svg(12px, #b2b2b2);
+      @include svg(48px, #b2b2b2);
     }
   }
 }

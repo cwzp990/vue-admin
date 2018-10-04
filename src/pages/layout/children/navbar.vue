@@ -81,9 +81,8 @@ export default {
       @include sc(15px, #666);
       line-height: 50px;
       text-align: center;
-      background: red;
       .svg-icon {
-        @include svg(14px, #666);
+        @include svg(24px, #666);
       }
     }
   }
