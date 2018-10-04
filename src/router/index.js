@@ -4,6 +4,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Layout from '@/pages/layout/index'
+// 如果路由表太长，可以将它分割成一个个小模块
+import nestedRouter from './modules/nested'
 
 // 所有权限的通用路由表，如首页、登录页这种，以及一些不需要权限的可以公用的页面
 export const routerMap = [
@@ -85,6 +87,7 @@ export const routerMap = [
       }
     ]
   },
+  nestedRouter,
   {
     path: '/maps',
     component: Layout,
