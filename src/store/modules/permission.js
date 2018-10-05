@@ -14,24 +14,11 @@ function hasPermission(roles, route) {
   }
 }
 
-const permission = {
-  state: {
-    routers: routerMap,
-    addRoutes: []
-  },
-  mutations: {
-    SET_ROUTERS: (state, routers) => {
-      state.addRoutes = routers
-      state.routers = routerMap.concat(routers)
-    }
-  }
-}
-
 /**
  * 递归过滤异步路由表，返回符合权限的路由表
  */
 
- function filterAsyncRouterMap (asyncRouterMap, roles) {
+function filterAsyncRouterMap(asyncRouterMap, roles) {
   const routers = asyncRouterMap.filter(route => {
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
@@ -42,6 +29,34 @@ const permission = {
     return false
   })
   return routers
- }
+}
+
+const permission = {
+  state: {
+    routers: routerMap,
+    addRouters: []
+  },
+  mutations: {
+    SET_ROUTERS: (state, routers) => {
+      state.addRouters = routers
+      state.routers = routerMap.concat(routers)
+    }
+  },
+  actions: {
+    GenerateRoutes({ commit }, data) {
+      return new Promise(resolve => {
+        const { roles } = data
+        let accessedRouters
+        if (roles.indexOf('admin') >= 0) {
+          accessedRouters = asyncRouterMap
+        } else {
+          accessedRouters = filterAsyncRouterMap(asyncRouterMap, roles)
+        }
+        commit('SET_ROUTERS', accessedRouters)
+        resolve()
+      })
+    }
+  }
+}
 
 export default permission
