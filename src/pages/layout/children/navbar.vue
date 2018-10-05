@@ -11,6 +11,10 @@
         <svg-icon icon-class="menu"></svg-icon>
       </span>
     </div>
+    <div class="btn-left"
+         @click="onFull">
+      <svg-icon icon-class="full"></svg-icon>
+    </div>
     <el-dropdown class="avatar-container"
                  trigger="click">
       <div class="avatar-wrapper">
@@ -22,22 +26,33 @@
       <el-dropdown-menu slot="dropdown"
                         class="user-dropdown">
         <el-dropdown-item>
-          消息
+          Welcome VueAdmin
         </el-dropdown-item>
         <el-dropdown-item>
+          <svg-icon icon-class="info"></svg-icon>
+          信息
+          <span class="count">{{user.info}}</span>
+        </el-dropdown-item>
+        <el-dropdown-item>
+          <svg-icon icon-class="friends"></svg-icon>
           好友
+          <span class="count">{{user.friends}}</span>
         </el-dropdown-item>
         <el-dropdown-item>
+          <svg-icon icon-class="setting"></svg-icon>
           账户设置
         </el-dropdown-item>
-        <el-dropdown-item>
-          通知
-        </el-dropdown-item>
         <el-dropdown-item divided>
+          <svg-icon icon-class="logout"></svg-icon>
           退出
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+    <div class="btn-right">
+      <svg-icon icon-class="github"
+                @click="gotoAddress"></svg-icon>
+      <svg-icon icon-class="signal"></svg-icon>
+    </div>
   </el-menu>
 </template>
 
@@ -45,9 +60,26 @@
 import SwitchBtn from '@/components/switch/index'
 export default {
   name: 'NavBar',
+  data () {
+    return {
+      user: {
+        info: 5,
+        friends: 6
+      }
+    }
+  },
   methods: {
     toogleSidebar () {
       this.$store.dispatch('toogleSidebar')
+    },
+    onFull () {
+      let el = document.documentElement
+      let rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen
+      if (typeof rfs != "undefined" && rfs) {
+        rfs.call(el)
+      }
+    },
+    gotoAddress () {
     }
   },
   components: {
@@ -86,6 +118,13 @@ export default {
       }
     }
   }
+  .btn-left {
+    display: inline-block;
+    .svg-icon {
+      @include svg(20px, #666);
+      cursor: pointer;
+    }
+  }
   .avatar-container {
     float: right;
     margin-right: 30px;
@@ -97,5 +136,39 @@ export default {
       cursor: pointer;
     }
   }
+  .btn-right {
+    float: right;
+    .svg-icon {
+      @include svg(20px, #666);
+      margin-right: 15px;
+      cursor: pointer;
+    }
+  }
+}
+
+.el-dropdown-menu__item {
+  width: 150px;
+  text-align: left;
+  border-bottom: 1px solid #e7e7e7;
+  .svg-icon {
+    @include svg(16px, #666);
+  }
+  .count {
+    display: inline-block;
+    margin-top: 10px;
+    @include wh(18px, 18px);
+    border-radius: 50%;
+    overflow: hidden;
+    background: $juzi;
+    color: #fff;
+    line-height: 18px;
+    text-align: center;
+    float: right;
+  }
+}
+
+.el-dropdown-menu__item:first-child {
+  @include sc(12px, #666);
+  font-weight: 700;
 }
 </style>
