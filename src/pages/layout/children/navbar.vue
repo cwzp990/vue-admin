@@ -49,8 +49,11 @@
       </el-dropdown-menu>
     </el-dropdown>
     <div class="btn-right">
-      <svg-icon icon-class="github"
-                @click="gotoAddress"></svg-icon>
+      <a target="_blank"
+         href="https://github.com/cwzp990/vue-admin">
+        <svg-icon icon-class="github"
+                  @click="gotoAddress"></svg-icon>
+      </a>
       <svg-icon icon-class="signal"></svg-icon>
     </div>
   </el-menu>
@@ -93,6 +96,7 @@ export default {
 .navbar {
   height: 50px;
   line-height: 50px;
+  border-bottom: 1px solid #e7e7e7;
   .navbar-branding {
     position: relative;
     float: left;
@@ -149,7 +153,6 @@ export default {
 .el-dropdown-menu__item {
   width: 150px;
   text-align: left;
-  border-bottom: 1px solid #e7e7e7;
   .svg-icon {
     @include svg(16px, #666);
   }

@@ -45,4 +45,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.el-scrollbar__wrap {
+  overflow-y: auto;
+}
 </style>

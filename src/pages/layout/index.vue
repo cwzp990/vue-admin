@@ -1,6 +1,7 @@
 <!-- 整体布局 -->
 <template>
-  <div class="app-wrapper">
+  <div :class="classObj"
+       class="app-wrapper">
     <navbar />
     <sidebar class="sidebar-container" />
     <div class="main-container">
@@ -14,6 +15,17 @@
 import { Navbar, Sidebar, AppMain, TagsView } from './children'
 export default {
   name: 'Layout',
+  computed: {
+    sidebar () {
+      return this.$store.state.app.sidebar
+    },
+    classObj () {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        withoutAnimation: this.sidebar.withoutAnimation
+      }
+    }
+  },
   components: {
     Navbar,
     Sidebar,
@@ -33,13 +45,23 @@ export default {
     transition: width 0.3s;
     float: left;
     width: 180px;
-    min-height: calc(100vh - 50px);
-    background: #000;
+    height: calc(100vh - 50px);
+    background: #304156;
   }
   .main-container {
     transition: margin-left 0.3s;
     float: left;
     width: calc(100vw - 185px);
+  }
+}
+
+.hideSidebar {
+  .sidebar-container {
+    width: 48px;
+  }
+  .main-container {
+    float: left;
+    width: calc(100vw - 53px);
   }
 }
 </style>
