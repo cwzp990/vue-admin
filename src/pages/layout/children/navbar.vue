@@ -16,7 +16,8 @@
       <svg-icon icon-class="full"></svg-icon>
     </div>
     <el-dropdown class="avatar-container"
-                 trigger="click">
+                 trigger="click"
+                 @command="handleCommand">
       <div class="avatar-wrapper">
         <img src="../../../assets/avatar.gif"
              alt="user"
@@ -42,7 +43,8 @@
           <svg-icon icon-class="setting"></svg-icon>
           账户设置
         </el-dropdown-item>
-        <el-dropdown-item divided>
+        <el-dropdown-item command="logout"
+                          divided>
           <svg-icon icon-class="logout"></svg-icon>
           退出
         </el-dropdown-item>
@@ -51,8 +53,7 @@
     <div class="btn-right">
       <a target="_blank"
          href="https://github.com/cwzp990/vue-admin">
-        <svg-icon icon-class="github"
-                  @click="gotoAddress"></svg-icon>
+        <svg-icon icon-class="github"></svg-icon>
       </a>
       <svg-icon icon-class="signal"></svg-icon>
     </div>
@@ -82,7 +83,12 @@ export default {
         rfs.call(el)
       }
     },
-    gotoAddress () {
+    handleCommand (command) {
+      if (command === 'logout') {
+        this.$store.dispatch('LogOut').then(() => {
+          location.reload()
+        })
+      }
     }
   },
   components: {
