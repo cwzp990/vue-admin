@@ -1,4 +1,4 @@
-import { loginByUsername } from '@/api/login'
+import { loginByUsername, getUserInfo } from '@/api/login'
 import { getToken, setToken } from '@/utils/auth'
 
 const user = {
@@ -8,7 +8,7 @@ const user = {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: ''
+    roles: []
   },
   mutations: {
     SET_STATUS: (state, status) => {
@@ -33,12 +33,34 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password)
           .then(res => {
-            commit('SET_TOKEN', res.token)
-            setToken(res.token)
+            commit('SET_TOKEN', res.data.token)
+            setToken(res.data.token)
             resolve()
           })
           .catch(error => {
             reject(error)
+          })
+      })
+    },
+    getUserInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getUserInfo(state.token)
+          .then(res => {
+            if (res.status !== 200) {
+              reject('error')
+            }
+            const data = res.data
+            if (data.roles && data.roles.length > 0) {
+              commit('SET_ROLES', data.roles)
+            } else {
+              reject('roles必须是一个非空数组！')
+            }
+            commit('SET_NAME', data.name)
+            commit('SET_AVATAR', data.avatar)
+            resolve(res)
+          })
+          .catch(err => {
+            reject(err)
           })
       })
     }

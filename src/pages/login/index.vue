@@ -26,11 +26,11 @@
                  @click.native.prevent="onLogin">登录</el-button>
       <div class="tips">
         <span>账号:admin</span>
-        <span>密码:admin</span>
+        <span>密码:admin888</span>
       </div>
       <div class="tips">
-        <span>账号:admin</span>
-        <span>密码:admin</span>
+        <span>账号:editor</span>
+        <span>密码:editor888</span>
       </div>
     </el-form>
   </div>
