@@ -7,6 +7,7 @@ import { getToken } from '@/utils/auth'
 
 NProgress.configure({ showSpinner: false })
 
+// 判断是否含有admin权限 判断是否含有指定permissionRoles权限
 function hasPermission(roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) return true
   if (!permissionRoles) return true
@@ -41,7 +42,7 @@ router.beforeEach((to, from, next) => {
           })
           .catch(err => {
             store.dispatch('FedLogOut').then(() => {
-              Message.error(err || 'Verification failed, please login again')
+              Message.error(err || '登录失败，请重新登录')
               next({ path: '/' })
             })
           })
